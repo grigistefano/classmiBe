@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "classmiBe",
+    "cacheProvider": "no",
+    "clientFramework": "angular",
+    "enableSwaggerCodegen": true,
+    "enableTranslation": true,
+    "entities": ["Book", "Author", "BookSell"],
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "YWQxZTk4YTEyNzNkYmY5NjMwNmQwODlkM2QzNzU5ODM0MzZkZDAyNzczZWEwYTM4MmI1YjdiOTI3ZGNhZTUzMDM1ZDdiYmQ3ZDAwMmQ3MDQ5MDk2NzkzZDBmMzU5MDExMmIwYmY1MmNhNmEwY2JmYjI5NGZkMmFjMGU1MzM0MmM=",
+    "languages": ["it", "en", "es", "fr"],
+    "lastLiquibaseTimestamp": 1750105362000,
+    "nativeLanguage": "it",
+    "packageName": "it.classmi.be",
+    "prodDatabaseType": "postgresql",
+    "serviceDiscoveryType": "eureka"
+  }
+}

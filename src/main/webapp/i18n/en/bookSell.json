@@ -1,0 +1,35 @@
+{
+  "classmiBeApp": {
+    "bookSell": {
+      "home": {
+        "title": "Book Sells",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Book Sell",
+        "createOrEditLabel": "Create or edit a Book Sell",
+        "notFound": "No Book Sells found"
+      },
+      "created": "A new Book Sell is created with identifier {{ param }}",
+      "updated": "A Book Sell is updated with identifier {{ param }}",
+      "deleted": "A Book Sell is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Book Sell {{ id }}?"
+      },
+      "detail": {
+        "title": "Book Sell"
+      },
+      "id": "Id",
+      "username": "Username",
+      "date": "Date",
+      "country": "Country",
+      "bookState": "Book State",
+      "quantity": "Quantity",
+      "price": "Price",
+      "note": "Note",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "book": "Book"
+    }
+  }
+}

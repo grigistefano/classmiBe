@@ -1,0 +1,83 @@
+{
+  "annotations": {
+    "changelogDate": "20250616202242"
+  },
+  "applications": ["classmiBe"],
+  "documentation": "to edit: extends AbstractAuditingEntity<UUID>\\nelimina audit fields",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["unique"],
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "username",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bookState",
+      "fieldType": "BookState",
+      "fieldValues": "PESSIMO,BUONO,OTTIMO"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "BookSell",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "options": {
+        "onDelete": "RESTRICT"
+      },
+      "otherEntityField": "title",
+      "otherEntityName": "book",
+      "otherEntityRelationshipName": "bookSells",
+      "relationshipName": "book",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

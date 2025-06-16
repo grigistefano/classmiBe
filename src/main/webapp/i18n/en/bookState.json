@@ -1,0 +1,10 @@
+{
+  "classmiBeApp": {
+    "BookState": {
+      "null": "",
+      "PESSIMO": "PESSIMO",
+      "BUONO": "BUONO",
+      "OTTIMO": "OTTIMO"
+    }
+  }
+}

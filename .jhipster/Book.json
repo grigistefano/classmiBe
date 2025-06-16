@@ -1,0 +1,111 @@
+{
+  "annotations": {
+    "changelogDate": "20250616202042"
+  },
+  "applications": ["classmiBe"],
+  "documentation": "to edit: extends AbstractAuditingEntity<UUID>\\nelimina audit fields",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["unique"],
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "titleSearch",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isbn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "publisher",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "publishedYear",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isVerified",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "verifyUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "viewAuthors",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "frontImageLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "backImageLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pagesNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "VARCHAR(1000)",
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Book",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "bookSell",
+      "otherEntityRelationshipName": "book",
+      "relationshipName": "bookSells",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "author",
+      "otherEntityRelationshipName": "books",
+      "relationshipName": "authors",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

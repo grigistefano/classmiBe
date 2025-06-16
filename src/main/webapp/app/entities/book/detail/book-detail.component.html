@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (book(); as bookRef) {
+      <div>
+        <h2 data-cy="bookDetailsHeading"><span jhiTranslate="classmiBeApp.book.detail.title">Book</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="classmiBeApp.book.id">Id</span></dt>
+          <dd>
+            <span>{{ bookRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.title">Title</span></dt>
+          <dd>
+            <span>{{ bookRef.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.titleSearch">Title Search</span></dt>
+          <dd>
+            <span>{{ bookRef.titleSearch }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.isbn">Isbn</span></dt>
+          <dd>
+            <span>{{ bookRef.isbn }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.publisher">Publisher</span></dt>
+          <dd>
+            <span>{{ bookRef.publisher }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.publishedYear">Published Year</span></dt>
+          <dd>
+            <span>{{ bookRef.publishedYear }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.isVerified">Is Verified</span></dt>
+          <dd>
+            <span>{{ bookRef.isVerified }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.verifyUrl">Verify Url</span></dt>
+          <dd>
+            <span>{{ bookRef.verifyUrl }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.viewAuthors">View Authors</span></dt>
+          <dd>
+            <span>{{ bookRef.viewAuthors }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.frontImageLink">Front Image Link</span></dt>
+          <dd>
+            <span>{{ bookRef.frontImageLink }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.backImageLink">Back Image Link</span></dt>
+          <dd>
+            <span>{{ bookRef.backImageLink }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.pagesNumber">Pages Number</span></dt>
+          <dd>
+            <span>{{ bookRef.pagesNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.language">Language</span></dt>
+          <dd>
+            <span>{{ bookRef.language }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'classmiBeApp.book.help.description' | translate" jhiTranslate="classmiBeApp.book.description"
+              >Description</span
+            >
+          </dt>
+          <dd>
+            <span>{{ bookRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.createdBy">Created By</span></dt>
+          <dd>
+            <span>{{ bookRef.createdBy }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.createdDate">Created Date</span></dt>
+          <dd>
+            <span>{{ bookRef.createdDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.lastModifiedBy">Last Modified By</span></dt>
+          <dd>
+            <span>{{ bookRef.lastModifiedBy }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.lastModifiedDate">Last Modified Date</span></dt>
+          <dd>
+            <span>{{ bookRef.lastModifiedDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="classmiBeApp.book.authors">Authors</span></dt>
+          <dd>
+            @for (authors of bookRef.authors; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/author', authors.id, 'view']">{{ authors?.name }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+        </button>
+
+        <button type="button" [routerLink]="['/book', bookRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

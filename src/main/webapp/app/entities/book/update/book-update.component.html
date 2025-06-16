@@ -1,0 +1,241 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-book-heading" data-cy="BookCreateUpdateHeading" jhiTranslate="classmiBeApp.book.home.createOrEditLabel">
+        Genera o modifica un Book
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          @let idRef = editForm.get('id')!;
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="classmiBeApp.book.id">Id</label>
+            <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+            @if (idRef.invalid && (idRef.dirty || idRef.touched)) {
+              <div></div>
+            }
+          </div>
+        }
+
+        @let titleRef = editForm.get('title')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_title" jhiTranslate="classmiBeApp.book.title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+          @if (titleRef.invalid && (titleRef.dirty || titleRef.touched)) {
+            <div>
+              @if (editForm.get('title')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Questo campo è obbligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_titleSearch" jhiTranslate="classmiBeApp.book.titleSearch">Title Search</label>
+          <input
+            type="text"
+            class="form-control"
+            name="titleSearch"
+            id="field_titleSearch"
+            data-cy="titleSearch"
+            formControlName="titleSearch"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isbn" jhiTranslate="classmiBeApp.book.isbn">Isbn</label>
+          <input type="text" class="form-control" name="isbn" id="field_isbn" data-cy="isbn" formControlName="isbn" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_publisher" jhiTranslate="classmiBeApp.book.publisher">Publisher</label>
+          <input type="text" class="form-control" name="publisher" id="field_publisher" data-cy="publisher" formControlName="publisher" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_publishedYear" jhiTranslate="classmiBeApp.book.publishedYear">Published Year</label>
+          <input
+            type="number"
+            class="form-control"
+            name="publishedYear"
+            id="field_publishedYear"
+            data-cy="publishedYear"
+            formControlName="publishedYear"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isVerified" jhiTranslate="classmiBeApp.book.isVerified">Is Verified</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isVerified"
+            id="field_isVerified"
+            data-cy="isVerified"
+            formControlName="isVerified"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_verifyUrl" jhiTranslate="classmiBeApp.book.verifyUrl">Verify Url</label>
+          <input type="text" class="form-control" name="verifyUrl" id="field_verifyUrl" data-cy="verifyUrl" formControlName="verifyUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_viewAuthors" jhiTranslate="classmiBeApp.book.viewAuthors">View Authors</label>
+          <input
+            type="text"
+            class="form-control"
+            name="viewAuthors"
+            id="field_viewAuthors"
+            data-cy="viewAuthors"
+            formControlName="viewAuthors"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frontImageLink" jhiTranslate="classmiBeApp.book.frontImageLink">Front Image Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="frontImageLink"
+            id="field_frontImageLink"
+            data-cy="frontImageLink"
+            formControlName="frontImageLink"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_backImageLink" jhiTranslate="classmiBeApp.book.backImageLink">Back Image Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="backImageLink"
+            id="field_backImageLink"
+            data-cy="backImageLink"
+            formControlName="backImageLink"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pagesNumber" jhiTranslate="classmiBeApp.book.pagesNumber">Pages Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="pagesNumber"
+            id="field_pagesNumber"
+            data-cy="pagesNumber"
+            formControlName="pagesNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_language" jhiTranslate="classmiBeApp.book.language">Language</label>
+          <input type="text" class="form-control" name="language" id="field_language" data-cy="language" formControlName="language" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_description"
+            [ngbTooltip]="'classmiBeApp.book.help.description' | translate"
+            jhiTranslate="classmiBeApp.book.description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdBy" jhiTranslate="classmiBeApp.book.createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdDate" jhiTranslate="classmiBeApp.book.createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lastModifiedBy" jhiTranslate="classmiBeApp.book.lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lastModifiedDate" jhiTranslate="classmiBeApp.book.lastModifiedDate"
+            >Last Modified Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModifiedDate"
+              data-cy="lastModifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastModifiedDate"
+              formControlName="lastModifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_authors" jhiTranslate="classmiBeApp.book.authors">Authors</label>
+          <select
+            class="form-control"
+            id="field_authors"
+            data-cy="authors"
+            multiple
+            name="authors"
+            formControlName="authors"
+            [compareWith]="compareAuthor"
+          >
+            @for (authorOption of authorsSharedCollection; track $index) {
+              <option [ngValue]="authorOption">{{ authorOption.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annulla</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salva</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,179 @@
+<div>
+  <h2 id="page-heading" data-cy="BookSellHeading">
+    <span jhiTranslate="classmiBeApp.bookSell.home.title">BookSells</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="classmiBeApp.bookSell.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-book-sell"
+        [routerLink]="['/book-sell/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="classmiBeApp.bookSell.home.createLabel">Genera un nuovo Book Sell</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (bookSells().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="classmiBeApp.bookSell.home.notFound">No Book Sells found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.id">Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="username">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.username">Username</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="date">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.date">Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="country">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.country">Country</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bookState">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.bookState">Book State</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="quantity">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.quantity">Quantity</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="price">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.price">Price</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="note">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.note">Note</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdBy">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.createdBy">Created By</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdDate">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.createdDate">Created Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lastModifiedBy">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.lastModifiedBy">Last Modified By</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lastModifiedDate">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.lastModifiedDate">Last Modified Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="book.title">
+              <div class="d-flex">
+                <span jhiTranslate="classmiBeApp.bookSell.book">Book</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody infinite-scroll (scrolled)="loadNextPage()" [infiniteScrollDisabled]="!hasMorePage()" [infiniteScrollDistance]="0">
+          @for (bookSell of bookSells(); track trackId(bookSell)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/book-sell', bookSell.id, 'view']">{{ bookSell.id }}</a>
+              </td>
+              <td>{{ bookSell.username }}</td>
+              <td>{{ bookSell.date | formatMediumDatetime }}</td>
+              <td>{{ bookSell.country }}</td>
+              <td [jhiTranslate]="'classmiBeApp.BookState.' + (bookSell.bookState ?? 'null')">
+                {{ { null: '', PESSIMO: 'PESSIMO', BUONO: 'BUONO', OTTIMO: 'OTTIMO' }[bookSell.bookState ?? 'null'] }}
+              </td>
+              <td>{{ bookSell.quantity }}</td>
+              <td>{{ bookSell.price }}</td>
+              <td>{{ bookSell.note }}</td>
+              <td>{{ bookSell.createdBy }}</td>
+              <td>{{ bookSell.createdDate | formatMediumDatetime }}</td>
+              <td>{{ bookSell.lastModifiedBy }}</td>
+              <td>{{ bookSell.lastModifiedDate | formatMediumDatetime }}</td>
+              <td>
+                @if (bookSell.book) {
+                  <div>
+                    <a [routerLink]="['/book', bookSell.book.id, 'view']">{{ bookSell.book.title }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/book-sell', bookSell.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+                  </a>
+
+                  <a [routerLink]="['/book-sell', bookSell.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(bookSell)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

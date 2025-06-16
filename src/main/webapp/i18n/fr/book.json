@@ -1,0 +1,45 @@
+{
+  "classmiBeApp": {
+    "book": {
+      "home": {
+        "title": "Books",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Book",
+        "createOrEditLabel": "Créer ou éditer un Book",
+        "notFound": "Aucun Book trouvé"
+      },
+      "created": "Un nouveau Book a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Book avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Book avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Book {{ id }} ?"
+      },
+      "detail": {
+        "title": "Book"
+      },
+      "id": "Id",
+      "title": "Title",
+      "titleSearch": "Title Search",
+      "isbn": "Isbn",
+      "publisher": "Publisher",
+      "publishedYear": "Published Year",
+      "isVerified": "Is Verified",
+      "verifyUrl": "Verify Url",
+      "viewAuthors": "View Authors",
+      "frontImageLink": "Front Image Link",
+      "backImageLink": "Back Image Link",
+      "pagesNumber": "Pages Number",
+      "language": "Language",
+      "description": "Description",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "bookSells": "Book Sells",
+      "authors": "Authors",
+      "help": {
+        "description": "VARCHAR(1000)"
+      }
+    }
+  }
+}

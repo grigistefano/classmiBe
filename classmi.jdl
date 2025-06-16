@@ -1,0 +1,110 @@
+application {
+  config {
+    baseName classmiBe
+    applicationType monolith
+    //feign client: NO
+    //webFlux: NO
+    packageName it.classmi.be
+    authenticationType jwt
+    //maven
+    prodDatabaseType postgresql
+    clientFramework angular
+    cacheProvider no
+    serviceDiscoveryType eureka
+    enableSwaggerCodegen true
+    enableTranslation true
+    languages [it, en, es, fr]
+    nativeLanguage it
+    //adminUI: YES
+    //bootswatch: sandstone, primary
+  }
+  
+  /*config {
+	baseName classmi-be
+	//blueprints [generator-jhipster-entity-audit]
+  }*/
+  
+  /*config(generator-jhipster-entity-audit) {
+    auditFramework javers
+  }*/
+  
+  entities *
+  filter *
+  paginate * with infinite-scroll
+  dto * with mapstruct
+  service all with serviceClass
+}
+
+enum BookState {
+	PESSIMO,
+    BUONO,
+	OTTIMO
+}
+
+/** to edit: extends AbstractAuditingEntity<UUID>
+	elimina audit fields*/
+entity Book {
+	@Id id UUID unique
+    title String required
+	titleSearch String
+	isbn String
+	publisher String
+	publishedYear Integer
+	isVerified Boolean
+	verifyUrl String
+    viewAuthors String
+    frontImageLink String
+	backImageLink String
+	pagesNumber Integer
+	language String
+	description String /** VARCHAR(1000) */
+	
+	createdBy String
+	createdDate Instant
+	lastModifiedBy String
+	lastModifiedDate Instant
+	
+	//authors
+	//bookSells
+}
+
+/** to edit: extends AbstractAuditingEntity<UUID>
+	elimina audit fields*/
+entity Author {
+	@Id id UUID unique
+    name String required
+	
+	createdBy String
+	createdDate Instant
+	lastModifiedBy String
+	lastModifiedDate Instant
+
+    //books
+}
+
+/** to edit: extends AbstractAuditingEntity<UUID>
+	elimina audit fields*/
+entity BookSell {
+	@Id id UUID unique
+    username String required
+    date ZonedDateTime
+    country String required
+	bookState BookState
+	quantity Integer
+	price Double
+	note TextBlob
+	
+	createdBy String
+	createdDate Instant
+	lastModifiedBy String
+	lastModifiedDate Instant
+	
+    //book
+}
+
+relationship ManyToOne {
+	BookSell{book(title)} to @OnDelete("RESTRICT") Book{bookSells(username)}
+}
+relationship ManyToMany {
+	Author{books(title)} to @OnDelete("RESTRICT") Book{authors(name)}
+}
